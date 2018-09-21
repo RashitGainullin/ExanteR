@@ -17,3 +17,20 @@ self$appid = "application_id"
 self$key = "key"
 self$get_candles(symbol = 'AAPL.NASDAQ',from = '2018-01-01',to = '2018-12-12','1min')
 ```
+
+4) If you need to store market data at you local computer:
+```
+library( QuantTools )
+symbols = c( 'AAPL.NASDAQ', 'FB.NASDAQ' ) 
+path = paste( '~' , 'Market Data', 'exante', sep = '/' ) 
+start_date = '2015-01-01'
+
+settings <- list( exante_storage = path, exante_storage_from = start_date, exante_symbols = symbols ) 
+ExanteR_settings( settings )
+store_exante_data( )
+```
+
+5) Collect market data from local storage:
+```
+get_exante_data('AAPL.NASDAQ','2018-01-01','2018-12-12','1min')
+```
