@@ -2,6 +2,8 @@
 
 Exante is a R package that allow you to load market data of wide range of assets from different exchanges (ex. NASDAQ, NYSE, MICEX etc.).  
  
+Prerequisites: ```QuantTools``` package
+ 
 1) You need to generate API keys for demo account at the website: https://developers.exante.eu/ 
  
 2) Install package using devtools: 
