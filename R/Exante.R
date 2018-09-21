@@ -31,7 +31,7 @@ Exante$set( 'public', 'initialize', function( flog = NULL ) {
   self$flog$message = base::message
   #check if keys exist
   self$file = 'data/keys.rds'
-  if( !file.exists( self$file ) ) message('file with keys not found')
+  if( !file.exists( self$file ) ) message('file with keys not found. please store keys in "data/keys.rds" or input it manually.')
 
 } )
 
@@ -82,12 +82,12 @@ Exante$set( 'public', 'get_exchange_description', function( exchange ) {
 
 Exante$set( 'public', 'get_candles', function( symbol, limit, from, to, period = '1min' ) {
 
-  from = as.integer( fasttime::fastPOSIXct( from ) ) * 1000
-  to   = as.integer( fasttime::fastPOSIXct(   to ) ) * 1000
+  from = as.integer( fasttime::fastPOSIXct( from ) )
+  to   = as.integer( fasttime::fastPOSIXct(   to ) )
 
   valid_timeframe = c( '1min' = 60, '5min' = 300, '10min' = 600, '15min' = 900, 'hour' = 3600, '6hour' = 21600, 'day' = 86400 )
   timeframe = valid_timeframe[ period ]
-  res = self$get( paste0( "ohlc/",symbol,"/",timeframe,'?from=',from,'&to=',to,'&size=',limit))
+  res = self$get( paste0( "ohlc/",symbol,"/",timeframe,'?from=',paste0(from,'000'),'&to=',paste0(to,'000'),'&size=',limit))
 
   x = self$try_request( res )
 
