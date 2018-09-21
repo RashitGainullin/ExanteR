@@ -38,6 +38,7 @@ store_exante_data = function( from = NULL, to = format( Sys.Date() ), verbose = 
 
     require(httr)
     require(data.table)
+    require(QuantTools)
 
     data.table( from = as.Date( unique( format( seq( from, to, 1 ), '%Y-%m-01' ) ) ) )[, to := shift( from - 1, type = 'lead', fill = to ) ][, {
 
