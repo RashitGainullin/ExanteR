@@ -30,7 +30,7 @@ ExanteR_settings_defaults = function() {
   .settings$exante_verbose = FALSE
   .settings$exante_storage_from = '2015-01-01'
 
-  .settings$exante_symbols = c( 'GAZP.MOEX', 'AAPL.NASDAQ' )
+  .settings$exante_symbols = c( 'GAZP.MICEX', 'AAPL.NASDAQ' )
 
 }
 .settings <- new.env()
