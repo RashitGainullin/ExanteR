@@ -26,18 +26,20 @@ Exante = R6::R6Class( 'Exante', lock_objects = F )
 
 Exante$set( 'public', 'initialize', function( flog = NULL ) {
 
-  self$appid = "yyy"
-  self$key = "xxx"
   self$account_info = list()
   self$timeout = 60
   self$flog$message = base::message
+  #check if keys exist
+  self$file = 'data/keys.rds'
+  if( !file.exists( self$file ) ) message('file with keys not found')
 
 } )
 
+
 Exante$set( 'public', 'get', function( request, api_type = 'md' ) {
 
-  url = paste0( "https://api-live.exante.eu/",api_type,"/1.0/",request)
-  request = function() httr::GET( url,  httr::timeout( self$timeout ),authenticate(  self$appid ,self$key ) )
+  url = paste0( "https://api-demo.exante.eu/",api_type,"/1.0/",request)
+  request = function() httr::GET( url,  httr::timeout( self$timeout ),authenticate(  readRDS( self$file )[1] , readRDS( self$file )[2] ) )
 
   request
 
