@@ -31,10 +31,16 @@ Exante$set( 'public', 'initialize', function( flog = NULL ) {
   self$flog$message = base::message
   #check if keys exist
   self$file = 'data/keys.rds'
-  if( !file.exists( self$file ) ) message('file with keys not found. please store keys in "data/keys.rds" or input it manually.')
+  if( !file.exists( self$file ) ) message('file with keys not found. please store keys in "data/keys.rds" or using set_keys method.')
 
 } )
 
+Exante$set( 'public', 'set_keys', function( app_id, key ) {
+
+  saveRDS(c(app_id,key), file = self$file)
+  message('API keys saved.')
+
+  } )
 
 Exante$set( 'public', 'get', function( request, api_type = 'md' ) {
 
